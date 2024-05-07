@@ -1,17 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="../css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700&display=swap" rel="stylesheet">
     <title>Quick Notes</title>
 </head>
 <body>
     <div class="container">
-        <h1 class="main-title">QuickNotes</h1>
-        <h2 class="subtitle">Write your notes below...</h2>
+        <h1 class="main-title">QuickNotes 🌱📗 </h1>
+        <h2 class="subtitle">Write your page notes below!</h2>
+        <div class="notification" id="saveNotification"></div>
         <textarea id="noteArea"></textarea>
         <button class="button" id="saveBtn">Save Note</button>
         <div id="notesHistory"></div>
+        <button class="button" id="clearAllBtn">Clear All Notes</button>
     </div>
     <script src="../js/popup.js"></script>
 </body>

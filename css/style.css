@@ -1,9 +1,19 @@
 /* Reset some basic elements */
 body, button, textarea {
     font-family: 'Outfit', sans-serif; /* Apply Outfit font */
-    margin: 10px;
-    padding: 10px;
+    margin: 0px;
+    padding: 0px;
     box-sizing: border-box;
+}
+
+
+/* Global styling */
+html, body {
+    height: 100%; /* Full height */
+    display: flex;
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+    background-color: #E8F5E9; /* Light background for the whole page */
 }
 
 /* Style for main titles */
@@ -11,6 +21,7 @@ body, button, textarea {
     color: #004D40; /* Darker green shade */
     font-size: 24px;
     font-weight: bold;
+    margin-bottom: 20px;
 }
 
 /* Style for subtitles */
@@ -18,6 +29,8 @@ body, button, textarea {
     color: #00796B; /* Medium green shade */
     font-size: 18px;
     font-style: italic;
+    font-weight: normal; /* Normal weight to keep it subtle */
+    margin-bottom: 15px; /* Space after subtitle */
 }
 
 /* Style for section titles */
@@ -27,6 +40,8 @@ body, button, textarea {
     text-decoration: underline;
 }
 
+
+
 /* General styling for the popup container to ensure proper margin and alignment */
 .container {
     display: flex; /* Enables Flexbox  to center things*/
@@ -35,8 +50,9 @@ body, button, textarea {
     justify-content: center; /* Centers children vertically (useful if you have more vertical space) */
     background-color: #E0F2F1; /* Very light green background */
     padding: 20px; /* Increased padding for better spacing */
-    margin: auto; /* Center align the container itself */
-    border-radius: 15px; /* Rounded corners */
+    margin: 0px; /* Center align the container itself */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Subtle shadow for depth */
     min-width: 300px; /* Minimum width */
     width: 90%; /* Responsive width */
     max-width: 600px; /* Maximum width */
@@ -47,12 +63,34 @@ body, button, textarea {
 /* Ensure notes history has proper padding and margin */
 #notesHistory {
     background-color: #B2DFDB; /* Light green background */
-    padding: 8px;
-    margin-bottom: 10px; /* Space below each note */
+    width: calc(100% - 20px); /* Full width minus padding */
+    padding: 10px;
+    margin-top: 20px; /* Space above */
+    margin-bottom: 20px; /* Space below */
     font-size: 16px;
     border-radius: 8px; /* Rounded corners */
     overflow-y: auto; /* Adds scrollbar if needed */
-    height: 150px; /* Fixed height */
+    max-height: 150px; /* Fixed height */
+}
+
+#Datetime {
+    font-size: 16px;
+    font-weight: bolder;
+    color: rgb(30, 49, 45);
+
+}
+.note {
+    padding: 8px;
+    margin-bottom: 5px; /* Space between notes */
+    border-left: 2px solid #00796B; /* Aesthetic touch with a left border */
+    list-style-type: none; /* Removes default list styling if using <li> */
+    position: relative;
+}
+
+.note::before {
+    position: absolute;
+    left: -10px; /* Adjust based on your layout preferences */
+    color: #00796B; /* Matching the left border color */
 }
 
 /* Adjustments for the note area */
@@ -61,10 +99,11 @@ body, button, textarea {
     padding: 10px;
     margin-bottom: 10px; /* Space below textarea */
     border-radius: 8px; /* Rounded corners */
-    background-color: rgba(160, 255, 195, 0.3); /* Soft green background with transparency */
+    background-color: rgba(255, 255, 255, 0.725); /* Soft green background with transparency */
     border: none;
     resize: none; /* Disable resizing of the textarea */
 }
+
 
 /* Styling for the Save Note button */
 .button {
@@ -81,6 +120,50 @@ body, button, textarea {
     background-color: #004D40; /* Darker green shade on hover */
 }
 
+#clearNotes {
+    background-color: rgba(159, 210, 187, 0.725);
+    color: teal;
+    font-size: 12px;
+}
+
+#clearNotes:hover {
+    background-color: rgba(53, 85, 70, 0.725);
+    color: rgb(252, 15, 15);
+    font-size: 12px;
+}
+
+/* Style for the Delete Note Button */
+.deleteBtn {
+    padding: 8px 12px;
+    margin-left: 10px; /* Add some space between the text and the button */
+    font-size: 14px;
+    background-color: #FF6B6B; /* Use a red shade for deletion to indicate caution */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer; /* Makes it clear it’s clickable */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Subtle shadow for depth */
+    transition: background-color 0.3s, box-shadow 0.3s; /* Smooth transitions for interaction */
+}
+
+.deleteBtn:hover {
+    background-color: #FF3B3B; /* A darker red on hover for visual feedback */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15); /* Slightly larger shadow on hover */
+}
+
+.deleteBtn:focus {
+    outline: none; /* Remove the outline to keep the style clean */
+    box-shadow: 0 0 0 2px #FFF, 0 0 0 4px #FF6B6B; /* Add a focus ring for accessibility */
+}
+
+.notification {
+    color: #004D40; /* Dark green text color for visibility */
+    margin-top: 10px;
+    height: 20px; /* Fixed height */
+    font-size: 14px; /* Smaller font size for notifications */
+}
+
+
 /* Responsive adjustments */
 @media (max-width: 1000px) {
     .container {
@@ -91,3 +174,5 @@ body, button, textarea {
         width: 100%; /* Full width on smaller screens */
     }
 }
+
+
