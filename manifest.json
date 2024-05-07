@@ -2,7 +2,7 @@
 "manifest_version": 3,
 "name": "Quick Notes",
 "version": "1.0",
-"description": "A simple notepad for quick notes while browsing, linked to specific websites. Users can edit and remove notes as they see fit. By Hamidat Bello",
+"description": "A simple notepad for quick notes linked to specific websites.",
 "permissions": ["storage", "tabs"],
 "action": {
     "default_popup": "html/popup.html",
@@ -10,7 +10,6 @@
 },
 "icons": {
     "48": "icons/icon.png"
+},
+"default_locale": "en"
 }
-
-}
-  
