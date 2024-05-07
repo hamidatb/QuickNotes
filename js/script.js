@@ -1,24 +1,26 @@
 document.addEventListener("DOMContentLoaded", function() {
     const contentDiv = document.getElementById('content');
 
-    // Function to load HTML content and initialize functionality
+    // Function to load HTML file into a div and initialize functionality
     function loadHTML(url, callback) {
         const xhr = new XMLHttpRequest();
-        xhr.onload = function() {
-            if (this.status === 200) {
+        xhr.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
                 contentDiv.innerHTML = this.responseText;
-                callback();  // Initialize functionality after content is loaded
+                callback();
             }
         };
         xhr.open("GET", url, true);
         xhr.send();
     }
 
+    // Initialize functionality after content is loaded
     function initPopup() {
         const saveBtn = document.getElementById('saveBtn');
         const noteArea = document.getElementById('noteArea');
         const notesHistory = document.getElementById('notesHistory');
 
+        // Save note function
         saveBtn.addEventListener('click', function() {
             chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
                 var currentUrl = tabs[0].url;
@@ -40,6 +42,7 @@ document.addEventListener("DOMContentLoaded", function() {
             });
         });
 
+        // Load notes function
         function loadNotes(url) {
             chrome.storage.local.get({notes: {}}, function(result) {
                 var notes = result.notes[url] || [];
@@ -61,5 +64,5 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     // Load the popup content and initialize
-    loadHTML('html/popup.html', initPopup);
+    loadHTML('../html/popup.html', initPopup);
 });
