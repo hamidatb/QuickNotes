@@ -6,10 +6,10 @@
     "permissions": ["storage"],
     "action": {
       "default_popup": "popup.html",
-      "default_icon": "/assets/icon.png"
+      "default_icon": "assets/icon.png"
     },
     "icons": {
-      "48": "icon.png"
+      "48": "assets/icon.png"
     }
   }
   
