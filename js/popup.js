@@ -44,7 +44,10 @@ function loadNotes(url) {
       notes.forEach(function(note, index) {
           var noteElement = document.createElement('div');
           noteElement.classList.add('note');
-          noteElement.innerHTML = `<strong>${note.timestamp}</strong> - ${note.text} <button class="deleteBtn" data-url="${url}" data-index="${index}">Delete</button>`;
+          noteElement.innerHTML = `
+              <button class="deleteBtn" data-url="${url}" data-index="${index}">Delete</button>
+              <div id="Datetime">${note.timestamp}</div>
+              <div>-${note.text}</div>`;
           historyElement.appendChild(noteElement);
       });
   });

@@ -73,12 +73,18 @@ html, body {
     max-height: 150px; /* Fixed height */
 }
 
+/* Enhanced style for the timestamp display */
 #Datetime {
-    font-size: 16px;
-    font-weight: bolder;
-    color: rgb(30, 49, 45);
-
+    font-size: 14px; /* Slightly smaller for subtlety */
+    font-weight: bold;
+    color: #00796B; /* A green shade to fit with your theme */
+    background-color: #E0F2F1; /* Light background color for contrast */
+    padding: 4px 8px;
+    border-radius: 4px; /* Rounded corners */
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12); /* Soft shadow for depth */
+    display: inline-block; /* Ensures the background and padding enclose the text */
 }
+
 .note {
     padding: 8px;
     margin-bottom: 5px; /* Space between notes */
@@ -134,9 +140,9 @@ html, body {
 
 /* Style for the Delete Note Button */
 .deleteBtn {
-    padding: 8px 12px;
+    padding: 6px 6px;
     margin-left: 10px; /* Add some space between the text and the button */
-    font-size: 14px;
+    font-size: 10px;
     background-color: #FF6B6B; /* Use a red shade for deletion to indicate caution */
     color: white;
     border: none;
