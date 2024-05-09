@@ -1,4 +1,4 @@
-// Find the HTML element that's the save button
+// Find the HTML element that's the save button using getElementById
 saveButton = document.getElementById('saveBtn')
 
 // Once the button is clicked, process the saving of the note
