@@ -34,8 +34,16 @@ function registerEventListeners() {
 function saveCurrentNote() {
   chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
       var currentUrl = tabs[0].url;
-      var noteText = document.getElementById('noteArea').value;
+      var noteText = document.getElementById('noteArea').value.trim(); // Trim whitespace from both ends of the text
       var timestamp = new Date().toLocaleString();
+      
+      // If the note is empty after trimming, display an error message and exit the function
+      if (noteText === "") {
+        document.getElementById('saveNotification').textContent = 'Cannot save an empty note!';
+        setTimeout(() => document.getElementById('saveNotification').textContent = '', 2000);
+        return; // Exit the function early if the note is empty
+      }
+
       var note = { text: noteText, timestamp: timestamp };
 
       chrome.storage.local.get({notes: {}}, function(result) {
@@ -47,7 +55,7 @@ function saveCurrentNote() {
           notes[currentUrl].unshift(note);
           chrome.storage.local.set({notes: notes}, function() {
               document.getElementById('saveNotification').textContent = 'Note saved!';
-              loadNotes(currentUrl);
+              loadNotes(currentUrl); // Ensure UI is updated immediately
               setTimeout(() => document.getElementById('saveNotification').textContent = '', 2000);
           });
       document.getElementById('noteArea').value = " ";
@@ -73,18 +81,31 @@ function loadNotes(url) {
   chrome.storage.local.get({ notes: {} }, function (result) {
       var notes = result.notes[url] || [];
       var historyElement = document.getElementById('notesHistory');
-      historyElement.innerHTML = '';
-      notes.forEach((note, index) => {
-          var noteElement = document.createElement('div');
-          noteElement.classList.add('note');
-          /* Store timestamp as a data attribute */
-          noteElement.dataset.timestamp = note.timestamp;
-          /* This is what will actually be shown of the note */
-          noteElement.innerHTML = `
-              <button class="deleteBtn" data-url="${url}" data-index="${index}">Delete</button>
-              <div class="note-content">${note.text}</div>`;
-          historyElement.appendChild(noteElement);
-      });
+      var clearAllBtn = document.getElementById('clearAllBtn');
+    
+      // Toggle visibility based on notes presence
+      if (notes.length === 0) {
+        historyElement.style.display = 'none';
+        clearAllBtn.style.display = 'none';
+      } 
+      else {
+        // Show the notes history section and clear all button if there are notes
+        historyElement.style.display = 'block'; 
+        clearAllBtn.style.display = 'block';
+        historyElement.innerHTML = ''; // Clear previous contents
+
+        notes.forEach((note, index) => {
+            var noteElement = document.createElement('div');
+            noteElement.classList.add('note');
+            /* Store timestamp as a data attribute */
+            noteElement.dataset.timestamp = note.timestamp;
+            /* This is what will actually be shown of the note */
+            noteElement.innerHTML = `
+                <button class="deleteBtn" data-url="${url}" data-index="${index}">Delete</button>
+                <div class="note-content">${note.text}</div>`;
+            historyElement.appendChild(noteElement);
+        });
+      }
   });
 }
 
@@ -141,7 +162,7 @@ function deleteNote(url, index) {
       if (notes) {
           notes.splice(index, 1);
           chrome.storage.local.set({notes: result.notes}, function() {
-              loadNotes(url);
+              loadNotes(url); // Always update the UI immediately.
           });
       }
   });
@@ -156,7 +177,8 @@ function clearAllNotes() {
       chrome.storage.local.get({notes: {}}, function(result) {
           result.notes[currentUrl] = [];
           chrome.storage.local.set({notes: result.notes}, function() {
-              loadNotes(currentUrl);
+              loadNotes(currentUrl); // refreshing the notes display
+    
           });
       });
   });

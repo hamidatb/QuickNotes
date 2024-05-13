@@ -21,7 +21,8 @@ html, body {
     color: #004D40; /* Darker green shade */
     font-size: 24px;
     font-weight: bold;
-    margin-bottom: 20px;
+    margin-top: 10px;
+    margin-bottom: 5px;
 }
 
 /* Style for subtitles */
@@ -30,7 +31,7 @@ html, body {
     font-size: 18px;
     font-style: italic;
     font-weight: normal; /* Normal weight to keep it subtle */
-    margin-bottom: 15px; /* Space after subtitle */
+    margin-bottom: 5px; /* Space after subtitle */
 }
 
 /* Style for section titles */
@@ -128,6 +129,7 @@ html, body {
     color: white;
     border: none;
     cursor: pointer; /* Mouse cursor on hover */
+    margin-bottom: 10px;
 }
 .button:hover {
     background-color: #004D40; /* Darker green shade on hover */
@@ -171,7 +173,7 @@ html, body {
 }
 
 .notification {
-    color: #004D40; /* Dark green text color for visibility */
+    color: #7ea09e; /* Dark green text color for visibility */
     margin-top: 10px;
     height: 20px; /* Fixed height */
     font-size: 14px; /* Smaller font size for notifications */
