@@ -1,20 +1,35 @@
-
 /*
-* Registers event listeners for various button clicks within the application.
-*/
+ * Registers event listeners for various button clicks and keypress events within the application.
+ * This centralizes event management in the application, ensuring that all UI interactions are handled efficiently.
+ */
 function registerEventListeners() {
+  // Event listener for saving note on Enter keypress within the note input area
+  document.getElementById('noteArea').addEventListener('keypress', function(event) {
+      // Check if the key pressed is the Enter key
+      if (event.key === "Enter") {
+          event.preventDefault(); // Prevent the default action to avoid form submission or any other unwanted behavior
+          saveCurrentNote(); // Call the function to save the note
+      }
+  });
+
+  // Event listener for clicking the save button
   document.getElementById('saveBtn').addEventListener('click', saveCurrentNote);
+
+  // Event listener for managing clicks in the notes history section
   document.getElementById('notesHistory').addEventListener('click', handleHistoryClick);
+
+  // Event listener for clearing all notes
   document.getElementById('clearAllBtn').addEventListener('click', clearAllNotes);
 
-  /* Event listeners for hover effect on notes */
+  // Event listeners for hover effects on notes in the history list
   document.getElementById('notesHistory').addEventListener('mouseover', handleNoteMouseOver);
   document.getElementById('notesHistory').addEventListener('mouseout', handleNoteMouseOut);
 }
 
-
 /* 
 * Saves the note currently entered in the textarea to the local storage.
+* This function captures the current tab's URL, the text in the textarea, and the current timestamp.
+* It stores the note in Chrome's local storage associated with the URL.
 */
 function saveCurrentNote() {
   chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
@@ -64,6 +79,7 @@ function loadNotes(url) {
           noteElement.classList.add('note');
           /* Store timestamp as a data attribute */
           noteElement.dataset.timestamp = note.timestamp;
+          /* This is what will actually be shown of the note */
           noteElement.innerHTML = `
               <button class="deleteBtn" data-url="${url}" data-index="${index}">Delete</button>
               <div class="note-content">${note.text}</div>`;
@@ -73,7 +89,8 @@ function loadNotes(url) {
 }
 
 /**
-* Event handler for note mouse over event.
+* Event handler for note mouse over event. 
+* Shows a tooltip on hover.
 */
 function handleNoteMouseOver(event) {
   var noteElement = event.target.closest('.note');
