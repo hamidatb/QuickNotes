@@ -12,6 +12,7 @@ To download, install the extension here: [Quicknotes Chrome Extension Page](http
 - **Note Timestamps**: Each note is saved with a timestamp, allowing users to see when the note was created.
 
 ## Demo Images
+![Demo 0](icons/Main.png)
 ![Demo 1](icons/Demo1.png)
 ![Demo 2](icons/Demo2.png)
 ![Demo 3](icons/Demo3.png)
