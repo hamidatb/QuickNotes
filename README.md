@@ -1,5 +1,8 @@
 # Quick Notes Chrome Extension
 
+#### Video Demo:  <https://youtu.be/BNyaKgNcZPM>
+#### Description:
+
 ## Overview
 Quick Notes is a powerful Chrome extension designed for professionals and students alike, allowing users to seamlessly save and manage notes linked to specific web pages. This tool is indispensable for those who engage in extensive online research, providing a swift and intuitive method to annotate and revisit key information across the web.
 
