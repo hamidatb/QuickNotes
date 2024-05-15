@@ -1,7 +1,7 @@
 {
 "manifest_version": 3,
 "name": "QuickNotes",
-"version": "1.5",
+"version": "2.0",
 "description": "A minimalist notepad for instantly saving notes linked to specific websites.",
 "permissions": ["storage", "tabs"],
 "action": {
